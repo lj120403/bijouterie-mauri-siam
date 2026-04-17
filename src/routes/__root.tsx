@@ -36,6 +36,15 @@ export const Route = createRootRoute({
         content:
           "Mauritius' luxury house for precious & semi-precious gemstones, diamonds, lab-grown CVD diamonds, gold & silver jewellery. Port Louis atelier.",
       },
+      { property: "og:title", content: "Bijouterie Mauri-Siam — Fine Gemstones & Diamonds, Mauritius" },
+      { name: "twitter:title", content: "Bijouterie Mauri-Siam — Fine Gemstones & Diamonds, Mauritius" },
+      { name: "description", content: "Mauri-Siam Jewels is a lavish online boutique showcasing precious and semi-precious gemstones and fine jewelry." },
+      { property: "og:description", content: "Mauri-Siam Jewels is a lavish online boutique showcasing precious and semi-precious gemstones and fine jewelry." },
+      { name: "twitter:description", content: "Mauri-Siam Jewels is a lavish online boutique showcasing precious and semi-precious gemstones and fine jewelry." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc8abab2-e03b-433f-9906-0f8f0ab7dc04/id-preview-273a3885--46ab68f4-c17b-47c2-b8d6-cd278802997a.lovable.app-1776446820966.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc8abab2-e03b-433f-9906-0f8f0ab7dc04/id-preview-273a3885--46ab68f4-c17b-47c2-b8d6-cd278802997a.lovable.app-1776446820966.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
