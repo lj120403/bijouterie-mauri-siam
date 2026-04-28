@@ -10,6 +10,7 @@ import coloredImg from "@/assets/colored-stones.jpg";
 import silverImg from "@/assets/silver-jewelry.jpg";
 import goldImg from "@/assets/gold-earrings.jpg";
 import czImg from "@/assets/cz.jpg";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/collection")({
   head: () => ({
@@ -88,19 +89,17 @@ const items = [
 ];
 
 function Collection() {
+  const { t } = useI18n();
   return (
     <Layout>
       <section className="px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <div className="text-center max-w-3xl mx-auto">
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">The Collection</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">{t("col.kicker")}</p>
             <h1 className="mt-3 font-display text-5xl sm:text-6xl md:text-7xl text-foreground">
-              Every stone, <span className="text-gradient italic">every grade.</span>
+              {t("col.title.a")} <span className="text-gradient italic">{t("col.title.b")}</span>
             </h1>
-            <p className="mt-5 text-muted-foreground">
-              From rough to polished, commercial to royal — Mauri-Siam holds an inventory worthy
-              of collectors, designers and connoisseurs alike.
-            </p>
+            <p className="mt-5 text-muted-foreground">{t("col.sub")}</p>
           </div>
 
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -142,7 +141,7 @@ function Collection() {
                     rel="noopener noreferrer"
                     className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-foreground hover:gap-2 transition-all"
                   >
-                    Enquire about {item.name} <ArrowRight className="h-4 w-4" />
+                    {t("col.enquireAbout")} {item.name} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </article>
