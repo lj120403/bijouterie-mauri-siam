@@ -174,14 +174,14 @@ function Home() {
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-card transition-all duration-500 hover:-translate-y-2 hover:border-white/20"
                 style={{ animationDelay: `${i * 80}ms` }}
               >
-                <div className="aspect-[4/5] overflow-hidden">
+                <div className="aspect-[3/4] overflow-hidden bg-card">
                   <img
                     src={s.img}
                     alt={`${s.name} gemstone`}
                     width={1024}
-                    height={1024}
+                    height={1365}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div
