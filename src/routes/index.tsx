@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { ArrowRight, Gem, ShieldCheck, Sparkles, Award } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
-import rubyImg from "@/assets/ruby-earring.png";
+import rubyImg from "@/assets/ruby-visible.png";
 import emeraldImg from "@/assets/emerald-ring.png";
 import sapphireImg from "@/assets/sapphire-ring.png";
 import diamondImg from "@/assets/diamond-ring.png";
@@ -181,7 +181,7 @@ function Home() {
                     width={1024}
                     height={1365}
                     loading="lazy"
-                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div
