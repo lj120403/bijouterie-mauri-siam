@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import heroImg from "@/assets/hero.jpg";
 import { Gem, Globe2, ShieldCheck, Sparkles } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -26,6 +27,14 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  const { t } = useI18n();
+  const features = [
+    { icon: Globe2, title: t("about.f1.t"), desc: t("about.f1.d") },
+    { icon: ShieldCheck, title: t("about.f2.t"), desc: t("about.f2.d") },
+    { icon: Gem, title: t("about.f3.t"), desc: t("about.f3.d") },
+    { icon: Sparkles, title: t("about.f4.t"), desc: t("about.f4.d") },
+  ];
+
   return (
     <Layout>
       <section className="px-4 sm:px-6">
@@ -40,52 +49,22 @@ function About() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-8 sm:p-14">
-              <p className="text-xs uppercase tracking-[0.3em] text-primary">The Atelier</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary">{t("about.kicker")}</p>
               <h1 className="mt-3 font-display text-5xl sm:text-6xl md:text-7xl text-foreground max-w-3xl">
-                A Mauritian house, a <span className="text-gradient italic">global eye.</span>
+                {t("about.title.a")} <span className="text-gradient italic">{t("about.title.b")}</span>
               </h1>
             </div>
           </div>
 
           <div className="mt-20 grid gap-12 md:grid-cols-2">
             <div>
-              <h2 className="font-display text-4xl text-foreground">Our story</h2>
-              <p className="mt-5 text-muted-foreground leading-relaxed">
-                Bijouterie Mauri-Siam was founded on the belief that Mauritius — at the
-                crossroads of Africa, India and the Far East — is the natural home for a serious
-                gemstone house. From our Port Louis atelier on the 9th floor of Hennessy Court,
-                we curate stones from the world's most storied mines and finish them into
-                jewellery that lasts generations.
-              </p>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
-                We work with private collectors, designers, jewellers and discerning individuals
-                seeking transparency, certification, and quietly exceptional craft.
-              </p>
+              <h2 className="font-display text-4xl text-foreground">{t("about.story")}</h2>
+              <p className="mt-5 text-muted-foreground leading-relaxed">{t("about.p1")}</p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">{t("about.p2")}</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                {
-                  icon: Globe2,
-                  title: "Global sourcing",
-                  desc: "Direct relationships with cutters in Bangkok, Jaipur, Antwerp and Surat.",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Certified",
-                  desc: "GIA, IGI, GRS and SSEF reports available on request for major stones.",
-                },
-                {
-                  icon: Gem,
-                  title: "All grades",
-                  desc: "From commercial production to museum-grade rarities.",
-                },
-                {
-                  icon: Sparkles,
-                  title: "Bespoke craft",
-                  desc: "In-house mounting, repair and design — 18k & 22k gold, 925 silver.",
-                },
-              ].map((f) => (
+              {features.map((f) => (
                 <div key={f.title} className="glass rounded-2xl p-6">
                   <div
                     className="flex h-11 w-11 items-center justify-center rounded-full"

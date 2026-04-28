@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
-import { ArrowRight, Gem, ShieldCheck, Sparkles, Award } from "lucide-react";
+import { ArrowRight, Gem, ShieldCheck, Sparkles, Award, Truck, BadgeDollarSign, Scale, Quote } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import rubyImg from "@/assets/ruby-visible.png";
 import emeraldImg from "@/assets/emerald-ring.png";
@@ -10,6 +10,7 @@ import labDiamondImg from "@/assets/lab-diamond.jpg";
 import coloredImg from "@/assets/colored-stones.jpg";
 import silverImg from "@/assets/silver-jewelry.jpg";
 import goldImg from "@/assets/gold-earrings.jpg";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,41 +35,29 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const stones = [
-  { name: "Ruby", origin: "Burma · Mozambique", img: rubyImg, accent: "from-rose-500/30" },
-  { name: "Emerald", origin: "Colombia · Zambia", img: emeraldImg, accent: "from-emerald-500/30" },
-  { name: "Sapphire", origin: "Kashmir · Ceylon", img: sapphireImg, accent: "from-blue-500/30" },
-  { name: "Diamond", origin: "Natural · D-Z", img: diamondImg, accent: "from-white/30" },
-];
-
-const categories = [
-  {
-    name: "Lab-Grown Diamonds",
-    desc: "Ethically created CVD diamonds with the same brilliance, fire and chemistry as mined stones — with full IGI certification.",
-    img: labDiamondImg,
-    tag: "CVD",
-  },
-  {
-    name: "Coloured Gemstones",
-    desc: "All grades of precious & semi-precious stones — amethyst, tanzanite, aquamarine, tourmaline, peridot, garnet and beyond.",
-    img: coloredImg,
-    tag: "Loose",
-  },
-  {
-    name: "Silver Jewellery",
-    desc: "Hand-finished sterling silver pieces — chains, bangles, rings and earrings, set with stones of your choice.",
-    img: silverImg,
-    tag: "925",
-  },
-  {
-    name: "Gold Jewellery",
-    desc: "18k & 22k yellow, white and rose gold — bespoke design, repair and remounting from our Port Louis atelier.",
-    img: goldImg,
-    tag: "18k · 22k",
-  },
-];
-
 function Home() {
+  const { t } = useI18n();
+
+  const stones = [
+    { key: "ruby", img: rubyImg, accent: "from-rose-500/30" },
+    { key: "emerald", img: emeraldImg, accent: "from-emerald-500/30" },
+    { key: "sapphire", img: sapphireImg, accent: "from-blue-500/30" },
+    { key: "diamond", img: diamondImg, accent: "from-white/30" },
+  ] as const;
+
+  const categories = [
+    { name: t("cat.lab"), desc: t("cat.lab.desc"), img: labDiamondImg, tag: "CVD" },
+    { name: t("cat.colored"), desc: t("cat.colored.desc"), img: coloredImg, tag: "Loose" },
+    { name: t("cat.silver"), desc: t("cat.silver.desc"), img: silverImg, tag: "925" },
+    { name: t("cat.gold"), desc: t("cat.gold.desc"), img: goldImg, tag: "18k · 22k" },
+  ];
+
+  const testimonials = [
+    { q: t("test.q1"), a: t("test.a1") },
+    { q: t("test.q2"), a: t("test.a2") },
+    { q: t("test.q3"), a: t("test.a3") },
+  ];
+
   return (
     <Layout>
       {/* HERO */}
@@ -88,16 +77,15 @@ function Home() {
                 <div className="glass-strong max-w-2xl rounded-3xl p-8 sm:p-10 animate-fade-in">
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.25em] text-muted-foreground">
                     <Sparkles className="h-3 w-3 text-primary" />
-                    Port Louis · Since est.
+                    {t("common.portLouis")}
                   </div>
                   <h1 className="mt-5 font-display text-5xl sm:text-6xl md:text-7xl leading-[0.95]">
-                    <span className="text-foreground">A house of</span>
+                    <span className="text-foreground">{t("home.hero.title.a")}</span>
                     <br />
-                    <span className="text-gradient italic">extraordinary stones.</span>
+                    <span className="text-gradient italic">{t("home.hero.title.b")}</span>
                   </h1>
                   <p className="mt-5 max-w-xl text-base text-muted-foreground">
-                    Rubies, emeralds, sapphires, diamonds — natural and lab-grown — set in the
-                    finest gold and silver. Curated in Mauritius, sourced from the world.
+                    {t("home.hero.sub")}
                   </p>
                   <div className="mt-7 flex flex-wrap items-center gap-3">
                     <a
@@ -107,14 +95,14 @@ function Home() {
                       className="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
                       style={{ background: "var(--gradient-purple)" }}
                     >
-                      Enquire on WhatsApp
+                      {t("nav.enquireWa")}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </a>
                     <Link
                       to="/collection"
                       className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-foreground hover:bg-white/10"
                     >
-                      View Collection
+                      {t("common.viewCollection")}
                     </Link>
                   </div>
                 </div>
@@ -128,10 +116,10 @@ function Home() {
       <section className="px-4 sm:px-6 mt-16">
         <div className="mx-auto max-w-7xl glass rounded-2xl p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { icon: Gem, label: "Hand-selected", sub: "Every stone, every facet" },
-            { icon: ShieldCheck, label: "Certified", sub: "GIA · IGI · GRS aligned" },
-            { icon: Award, label: "All grades", sub: "From commercial to royal" },
-            { icon: Sparkles, label: "Bespoke setting", sub: "Atelier in Port Louis" },
+            { icon: Gem, label: t("trust.handpicked"), sub: t("trust.handpicked.sub") },
+            { icon: ShieldCheck, label: t("trust.certified"), sub: t("trust.certified.sub") },
+            { icon: Award, label: t("trust.grades"), sub: t("trust.grades.sub") },
+            { icon: Sparkles, label: t("trust.bespoke"), sub: t("trust.bespoke.sub") },
           ].map((f) => (
             <div key={f.label} className="flex items-center gap-3">
               <div
@@ -154,30 +142,30 @@ function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="flex items-end justify-between flex-wrap gap-4">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary">The Precious Four</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary">{t("four.kicker")}</p>
               <h2 className="mt-3 font-display text-4xl sm:text-5xl md:text-6xl text-foreground">
-                Stones of <span className="text-gradient italic">consequence</span>
+                {t("four.title.a")} <span className="text-gradient italic">{t("four.title.b")}</span>
               </h2>
             </div>
             <Link
               to="/collection"
               className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
             >
-              Explore the full collection <ArrowRight className="h-4 w-4" />
+              {t("common.exploreFull")} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {stones.map((s, i) => (
               <div
-                key={s.name}
+                key={s.key}
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-card transition-all duration-500 hover:-translate-y-2 hover:border-white/20"
                 style={{ animationDelay: `${i * 80}ms` }}
               >
                 <div className="aspect-[3/4] overflow-hidden bg-card">
                   <img
                     src={s.img}
-                    alt={`${s.name} gemstone`}
+                    alt={t(`stone.${s.key}`)}
                     width={1024}
                     height={1365}
                     loading="lazy"
@@ -189,9 +177,9 @@ function Home() {
                 />
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <div className="glass rounded-2xl p-4">
-                    <h3 className="font-display text-2xl text-foreground">{s.name}</h3>
+                    <h3 className="font-display text-2xl text-foreground">{t(`stone.${s.key}`)}</h3>
                     <p className="text-xs uppercase tracking-widest text-muted-foreground mt-1">
-                      {s.origin}
+                      {t(`stone.${s.key}.origin`)}
                     </p>
                   </div>
                 </div>
@@ -205,14 +193,11 @@ function Home() {
       <section className="px-4 sm:px-6 mt-32">
         <div className="mx-auto max-w-7xl">
           <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">The Atelier</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">{t("cat.kicker")}</p>
             <h2 className="mt-3 font-display text-4xl sm:text-5xl md:text-6xl text-foreground">
-              Beyond the stone
+              {t("cat.title")}
             </h2>
-            <p className="mt-4 text-muted-foreground">
-              From loose gems to finished jewellery, lab-grown brilliance to ancestral gold —
-              every piece curated with the eye of a collector.
-            </p>
+            <p className="mt-4 text-muted-foreground">{t("cat.sub")}</p>
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2">
@@ -251,11 +236,72 @@ function Home() {
                       rel="noopener noreferrer"
                       className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-foreground hover:gap-2 transition-all"
                     >
-                      Enquire <ArrowRight className="h-4 w-4" />
+                      {t("common.enquire")} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MAURITIUS-WIDE SERVICE */}
+      <section className="px-4 sm:px-6 mt-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">{t("mu.kicker")}</p>
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl md:text-6xl text-foreground">
+              {t("mu.title")}
+            </h2>
+            <p className="mt-4 text-muted-foreground">{t("mu.sub")}</p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              { icon: Truck, label: t("mu.delivery"), sub: t("mu.delivery.sub") },
+              { icon: BadgeDollarSign, label: t("mu.payment"), sub: t("mu.payment.sub") },
+              { icon: Scale, label: t("mu.appraisal"), sub: t("mu.appraisal.sub") },
+            ].map((f) => (
+              <div key={f.label} className="glass-strong rounded-3xl p-7">
+                <div
+                  className="flex h-12 w-12 items-center justify-center rounded-full"
+                  style={{ background: "var(--gradient-purple)" }}
+                >
+                  <f.icon className="h-5 w-5 text-primary-foreground" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl text-foreground">{f.label}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{f.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="px-4 sm:px-6 mt-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">{t("test.kicker")}</p>
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl md:text-6xl text-foreground">
+              {t("test.title")}
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {testimonials.map((tst, i) => (
+              <figure
+                key={i}
+                className="glass rounded-3xl p-7 relative overflow-hidden"
+              >
+                <Quote className="h-8 w-8 text-primary opacity-60" />
+                <blockquote className="mt-4 text-sm leading-relaxed text-foreground">
+                  "{tst.q}"
+                </blockquote>
+                <figcaption className="mt-5 text-xs uppercase tracking-widest text-muted-foreground">
+                  {tst.a}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
@@ -269,13 +315,12 @@ function Home() {
               className="pointer-events-none absolute -top-40 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full opacity-40 blur-3xl"
               style={{ background: "var(--gradient-purple)" }}
             />
-            <p className="text-xs uppercase tracking-[0.3em] text-primary relative">Private viewing</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-primary relative">{t("cta.kicker")}</p>
             <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl text-foreground relative">
-              The collection awaits.
+              {t("cta.title")}
             </h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto relative">
-              Tell us what you seek — a coloured stone, a diamond, a piece for an occasion. Our
-              gemmologist will guide you, in person or by message.
+              {t("cta.sub")}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 relative">
               <a
@@ -285,13 +330,13 @@ function Home() {
                 className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
                 style={{ background: "var(--gradient-purple)" }}
               >
-                Enquire on WhatsApp <ArrowRight className="h-4 w-4" />
+                {t("nav.enquireWa")} <ArrowRight className="h-4 w-4" />
               </a>
               <Link
                 to="/contact"
                 className="glass inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-foreground hover:bg-white/10"
               >
-                Visit the atelier
+                {t("common.visitAtelier")}
               </Link>
             </div>
           </div>
