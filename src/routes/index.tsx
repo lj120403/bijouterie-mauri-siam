@@ -5,7 +5,7 @@ import heroImg from "@/assets/hero.jpg";
 import rubyImg from "@/assets/ruby-earring.png";
 import emeraldImg from "@/assets/emerald-ring.png";
 import sapphireImg from "@/assets/sapphire-ring.png";
-import diamondImg from "@/assets/diamond.jpg";
+import diamondImg from "@/assets/diamond-ring.png";
 import labDiamondImg from "@/assets/lab-diamond.jpg";
 import coloredImg from "@/assets/colored-stones.jpg";
 import silverImg from "@/assets/silver-jewelry.jpg";
