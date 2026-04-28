@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Linkedin } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export function Footer() {
+  const { t } = useI18n();
   return (
     <footer className="relative mt-32 px-4 sm:px-6 pb-10">
       <div className="mx-auto max-w-7xl">
@@ -14,8 +16,7 @@ export function Footer() {
             <div className="md:col-span-2">
               <h3 className="font-display text-3xl text-gradient">Bijouterie Mauri-Siam</h3>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-                Purveyors of fine gemstones, diamonds, and precious metals in the heart of
-                Port Louis, Mauritius. Curators of brilliance since inception.
+                {t("footer.tagline")}
               </p>
               <div className="mt-6 flex items-center gap-3">
                 <a
@@ -50,38 +51,32 @@ export function Footer() {
 
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">
-                Visit
+                {t("footer.visit")}
               </h4>
-              <p className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
+              <p className="mt-4 flex items-start gap-2 text-sm text-muted-foreground whitespace-pre-line">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span>
-                  Pope Hennessy, Hennessy Court
-                  <br />
-                  9th Floor, Suite 9014
-                  <br />
-                  Port Louis, Mauritius
-                </span>
+                <span>{t("contact.address")}</span>
               </p>
             </div>
 
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">
-                Navigate
+                {t("footer.navigate")}
               </h4>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <li>
                   <Link to="/collection" className="hover:text-foreground">
-                    Collection
+                    {t("nav.collection")}
                   </Link>
                 </li>
                 <li>
                   <Link to="/about" className="hover:text-foreground">
-                    Atelier
+                    {t("nav.about")}
                   </Link>
                 </li>
                 <li>
                   <Link to="/contact" className="hover:text-foreground">
-                    Contact
+                    {t("nav.contact")}
                   </Link>
                 </li>
               </ul>
@@ -90,11 +85,9 @@ export function Footer() {
 
           <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Bijouterie Mauri-Siam. All brilliance reserved.
+              © {new Date().getFullYear()} Bijouterie Mauri-Siam. {t("footer.rights")}
             </p>
-            <p className="text-xs text-muted-foreground">
-              Crafted in Mauritius · GIA-aligned grading practices
-            </p>
+            <p className="text-xs text-muted-foreground">{t("footer.crafted")}</p>
           </div>
         </div>
       </div>
