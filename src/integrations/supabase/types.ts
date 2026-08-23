@@ -14,16 +14,165 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      custom_orders: {
+        Row: {
+          budget_range: string | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string
+          order_type: string | null
+          phone: string
+          stone_interest: string | null
+          urgency: string | null
+        }
+        Insert: {
+          budget_range?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          order_type?: string | null
+          phone: string
+          stone_interest?: string | null
+          urgency?: string | null
+        }
+        Update: {
+          budget_range?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          order_type?: string | null
+          phone?: string
+          stone_interest?: string | null
+          urgency?: string | null
+        }
+        Relationships: []
+      }
+      stock_items: {
+        Row: {
+          available: boolean
+          carat: number | null
+          category: string
+          cert_lab: string | null
+          cert_number: string | null
+          clarity: string | null
+          colour: string | null
+          created_at: string
+          cut: string | null
+          dimensions_mm: string | null
+          id: string
+          image_url: string | null
+          location: string | null
+          metal: string | null
+          notes: string | null
+          origin: string | null
+          quantity: number
+          ring_size: string | null
+          shape: string | null
+          sku: string
+          stone_type: string | null
+          style: string | null
+          treatment: string | null
+          updated_at: string
+          weight_g: number | null
+        }
+        Insert: {
+          available?: boolean
+          carat?: number | null
+          category?: string
+          cert_lab?: string | null
+          cert_number?: string | null
+          clarity?: string | null
+          colour?: string | null
+          created_at?: string
+          cut?: string | null
+          dimensions_mm?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          metal?: string | null
+          notes?: string | null
+          origin?: string | null
+          quantity?: number
+          ring_size?: string | null
+          shape?: string | null
+          sku: string
+          stone_type?: string | null
+          style?: string | null
+          treatment?: string | null
+          updated_at?: string
+          weight_g?: number | null
+        }
+        Update: {
+          available?: boolean
+          carat?: number | null
+          category?: string
+          cert_lab?: string | null
+          cert_number?: string | null
+          clarity?: string | null
+          colour?: string | null
+          created_at?: string
+          cut?: string | null
+          dimensions_mm?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          metal?: string | null
+          notes?: string | null
+          origin?: string | null
+          quantity?: number
+          ring_size?: string | null
+          shape?: string | null
+          sku?: string
+          stone_type?: string | null
+          style?: string | null
+          treatment?: string | null
+          updated_at?: string
+          weight_g?: number | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +299,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff", "user"],
+    },
   },
 } as const
