@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as CatalogRouteImport } from './routes/catalog'
+import { Route as BespokeRouteImport } from './routes/bespoke'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const CatalogRoute = CatalogRouteImport.update({
   path: '/catalog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BespokeRoute = BespokeRouteImport.update({
+  id: '/bespoke',
+  path: '/bespoke',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bespoke': typeof BespokeRoute
   '/catalog': typeof CatalogRoute
   '/collection': typeof CollectionRoute
   '/contact': typeof ContactRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bespoke': typeof BespokeRoute
   '/catalog': typeof CatalogRoute
   '/collection': typeof CollectionRoute
   '/contact': typeof ContactRoute
@@ -59,21 +67,36 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bespoke': typeof BespokeRoute
   '/catalog': typeof CatalogRoute
   '/collection': typeof CollectionRoute
   '/contact': typeof ContactRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/catalog' | '/collection' | '/contact'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/bespoke'
+    | '/catalog'
+    | '/collection'
+    | '/contact'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/catalog' | '/collection' | '/contact'
-  id: '__root__' | '/' | '/about' | '/catalog' | '/collection' | '/contact'
+  to: '/' | '/about' | '/bespoke' | '/catalog' | '/collection' | '/contact'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/bespoke'
+    | '/catalog'
+    | '/collection'
+    | '/contact'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BespokeRoute: typeof BespokeRoute
   CatalogRoute: typeof CatalogRoute
   CollectionRoute: typeof CollectionRoute
   ContactRoute: typeof ContactRoute
@@ -102,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CatalogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bespoke': {
+      id: '/bespoke'
+      path: '/bespoke'
+      fullPath: '/bespoke'
+      preLoaderRoute: typeof BespokeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -122,6 +152,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BespokeRoute: BespokeRoute,
   CatalogRoute: CatalogRoute,
   CollectionRoute: CollectionRoute,
   ContactRoute: ContactRoute,
